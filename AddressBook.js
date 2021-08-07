@@ -85,8 +85,24 @@ class Contact
             this._email = email
         else throw "Incorrect Email"
     }
+    
+    toString(){
+        return "FirstName: " + this.firstName + " LastName: " + this.lastName + " Address: " + this.address + " City: " + this.city +
+                " State: " + this.state + " Zip: " + this.zip + " PhoneNO: " + this.phoneNo + " Email: " + this.email;
+    }
+
 
 }
 
-let contact1 = new Contact("Lavanya", "Gangadharan", "Kann", "Chennai", "Tamilnadu",609842,9086543215, "lavanya@gmail.com")
-console.log(contact1)
+let contact1 = new Contact("Lavanya", "Gangadharan", "Vellore", "Chennai", "Tamilnadu", "602845", "91 8096743215", "lavanya3@gmail.com")
+let contact2 = new Contact("Ganesh", "Kanna", "City Center", "Chennai", "Tamilnadu", "509832", "91 9654310542", "ganesh3@gmail.com")
+let contact3 = new Contact("Sandhiya", "natrajan", "Annanagar", "Chennai", "Tamilnadu", "589245", "91 9807635214", "sandhiya11@gmail.com")
+
+var addressBookArray = new Array()
+addressBookArray.push(contact1)
+addressBookArray.push(contact2)
+addressBookArray.push(contact3)    
+
+for(let i = 0; i < addressBookArray.length; i++){
+    console.log(addressBookArray[i].toString())
+}
