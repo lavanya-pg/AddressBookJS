@@ -1,19 +1,9 @@
 console.log("Welcome to the AddressBook Program");
-class Contact
-{
-    firstName;
-    lastName;
-    address;
-    city;
-    state;
-    zip;
-    phoneNo;
-    email;
 
-    constructor(...params)
-    {
-        this.firstName = params[0];
-        this.lastName = params[1];
+class Contact{
+    constructor(...params){        
+        this.firstName = params[0]        
+        this.lastName = params[1];        
         this.address = params[2];
         this.city = params[3];
         this.state = params[4];
@@ -21,12 +11,9 @@ class Contact
         this.phoneNo = params[6];
         this.email = params[7];
     }
-    get firstName()
-    { 
-        return this._firstName
-    }
-    set firstName(firstName)
-    {
+
+    get firstName(){ return this._firstName}
+    set firstName(firstName){
         let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z]{2,}$')
         if(nameRegex.test(firstName))
             this._firstName = firstName
@@ -85,32 +72,45 @@ class Contact
             this._email = email
         else throw "Incorrect Email"
     }
-    
+
     toString(){
         return "FirstName: " + this.firstName + " LastName: " + this.lastName + " Address: " + this.address + " City: " + this.city +
                 " State: " + this.state + " Zip: " + this.zip + " PhoneNO: " + this.phoneNo + " Email: " + this.email;
     }
 
-
 }
 
-let contact1 = new Contact("Lavanya", "Gangadharan", "Vellore", "Chennai", "Tamilnadu", "602845", "91 8096743215", "lavanya3@gmail.com")
-let contact2 = new Contact("Ganesh", "Kanna", "City Center", "Chennai", "Tamilnadu", "509832", "91 9654310542", "ganesh3@gmail.com")
+let contact1 = new Contact("Lavanya", "Gangadharan", "Vellore", "Chennai", "Tamilnadu", "602845", "91 8096743215", "lavanya9@gmail.com")
+let contact2 = new Contact("Ganesh", "Kanna", "City Center", "Chennai", "Tamilnadu", "509832", "91 9654310542", "ganesh8@gmail.com")
 let contact3 = new Contact("Sandhiya", "natrajan", "Annanagar", "Chennai", "Tamilnadu", "589245", "91 9807635214", "sandhiya11@gmail.com")
+let contact4 = new Contact("Naveen", "Prasad", "Madhapur", "mangalore", "Karnataka", "580967", "91 9058276135", "naveen2@gmail.com")
+let contact5 = new Contact("Vinod", "Kumar", "Charminar", "Hyderabad", "Telangana", "532149", "91 9542178032", "vinod3@gmail.com")
 
 var addressBookArray = new Array()
-addressBookArray.push(contact1)
-addressBookArray.push(contact2)
-addressBookArray.push(contact3)    
+function addContact(contact){
+    let duplicateContact = findContact(contact.firstName, contact.lastName)
+    if(duplicateContact != null)
+        console.log("Can't Add Contact. Dupicate Contact Found.")
+    else
+        addressBookArray.push(contact)
+}
+addContact(contact1)
+addContact(contact2)
+addContact(contact3)
+addContact(contact4)
+addContact(contact5)
 
-const prompt = require('prompt-sync')();
 function findContact(fname, lname){
     let contactToEdit;
     for(let i = 0; i < addressBookArray.length; i++){
         if(addressBookArray[i].firstName === fname && addressBookArray[i].lastName === lname)
             contactToEdit = addressBookArray[i]
     }
-
+    return contactToEdit;
+}
+const prompt = require('prompt-sync')();
+function findContactAndEdit(fname, lname){
+    let contactToEdit = findContact(fname,lname)
     if(contactToEdit == null)
         console.log("No Contact Found To Edit")
     else{
@@ -162,15 +162,17 @@ function findContact(fname, lname){
     }
 }
 
-let param1 = prompt("Enter the First Name:  ")
-let param2 = prompt("Enter the Last Name:  ")
-findContact(param1, param2)
+let param1 = prompt("Enter the First Name (contact to edit):  ")
+let param2 = prompt("Enter the Last Name (contact to edit):  ")
+findContactAndEdit(param1, param2)
 
 function deleteContact(fname, lname){
-    let contactToDelete = findContact(fname,lname)
-    addressBookArray.pop(contactToDelete)
+    let contactToDelete = findContact(fname. lname)
+    if(contactToDelete == null)
+        console.log("No Contact Found To Delete")
+    else
+        addressBookArray.pop(contactToDelete)
 }
-let contact4 = new Contact("Naveen", "Prasad", "Madhapur", "mangalore", "Karnataka", "580967", "91 9058276135", "naveen@gmail.com")
 addressBookArray.push(contact4)
 let param3 = prompt("Enter the First Name (contact to delete):  ")
 let param4 = prompt("Enter the Last Name (contact to delete):  ")
