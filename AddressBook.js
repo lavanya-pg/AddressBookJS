@@ -180,4 +180,10 @@ class AddressBook {
         let searchPersonInCityOrState = AddressBookArray.filter(contact => contact.city == givenCity );
         console.log(searchPersonInCityOrState.toString());
     }
+     //count by city or state
+     {
+        let givenCity = 'Hyderabad';
+        let countByCity = AddressBookArray.filter(contact => contact.city == givenCity ).reduce((acc,val) => acc+1,0);
+        console.log('Count by City ' + givenCity + ' is : ' + countByCity);
+    }
 } 
