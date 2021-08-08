@@ -174,4 +174,10 @@ class AddressBook {
         let searchPersonInCityOrState = AddressBookArray.filter(contact => contact.firstName == 'Lavanya' && contact.city == givenCity );
         console.log(searchPersonInCityOrState.toString());                                    
     }
+    //viewperson
+    {
+        let givenCity = 'Chennai';
+        let searchPersonInCityOrState = AddressBookArray.filter(contact => contact.city == givenCity );
+        console.log(searchPersonInCityOrState.toString());
+    }
 } 
